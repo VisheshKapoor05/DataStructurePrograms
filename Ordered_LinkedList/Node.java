@@ -2,8 +2,8 @@ package DataStructurePrograms.Ordered_LinkedList;
 
 public class Node {
 	
-	Node next = null;
-	int data;
+	public Node next = null;
+	public int data;
 	
 	public Node getNext() {
 		return next;
