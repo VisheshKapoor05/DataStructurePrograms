@@ -2,12 +2,15 @@ package DataStructurePrograms.Ordered_LinkedList;
 
 public class OrderedListService {
 	
-	Node head;
+	Node head = null;
 	
 	public void insertInOrder(int data) {
 		
 		Node node = new Node();
-		System.out.println("inserting...");
+		
+		Node currentNode = head;
+		Node previousNode = null;
+		
 		// if there's no head, insert one
 		if(head == null){
 			node.setData(data);
@@ -16,10 +19,8 @@ public class OrderedListService {
 			System.out.println("List started, head: " +head);
 		}
 		
-		Node currentNode = head;
-		Node previousNode = null;
 		// if new node is greater than already existed node:
-		if(currentNode.data < data) 
+		else if(currentNode.data < data) 
 		{
 			
 			//iterating till it gets greater than or equal to a specific node or reaches the end
@@ -34,12 +35,12 @@ public class OrderedListService {
 			if(currentNode.data >= data) {
 				node.setNext(currentNode);
 				previousNode.next = node;
-				System.out.println("number added in between " +node.data);
 			}
+			
+			// new node is added at the end if we reach at the end
 			else if(currentNode.next == null) {
 				node.setNext(null);
 				currentNode.next = node;
-				System.out.println("number added at the end "+node.data);
 			}
 			
 		}
@@ -50,9 +51,33 @@ public class OrderedListService {
 			node.setData(data);
 			node.setNext(head);
 			head = node;
-			System.out.println("Node added at starting " +head.data);
 		}
 		
+		System.out.println("inserted");
+	}
+	
+	
+	public void searchNode(int data) {
+		Node currentNode  = head;
+		
+		// iterating till the end
+		while(currentNode.next != null)
+		{
+			// if we get the node with desired data before getting null, we are deleting the node
+			if(currentNode.next.data == data) {
+				currentNode.setNext(currentNode.next.next);
+				System.out.println("The word is found in the list and hence deleted");
+				break;
+			}
+			// if we dont get the data node, means it will be iterated till the end
+			else if(currentNode.next.next == null) {
+				insertInOrder(data);
+				System.out.println("The word is not found in the list and hence added");
+				break;
+			}
+			
+			currentNode = currentNode.next;
+		}
 	}
 	
 	public void displayList() {

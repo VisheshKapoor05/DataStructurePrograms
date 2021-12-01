@@ -22,6 +22,11 @@ public class OrderedListDemo {
 		System.out.println("You entered the following list:");
 		list.displayList();
 		System.out.println();
+		
+		System.out.println("Enter a number you want to pop out or insert:");
+		int searchNumber = sc.nextInt();
+		list.searchNode(searchNumber);
+		list.displayList();
 
 	}
 	
